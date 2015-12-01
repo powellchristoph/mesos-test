@@ -4,6 +4,11 @@
     "cpus": 0.1,
     "mem": 10.0,
     "instances": 1,
+    "env": {
+        "SYSLOG_SERVER": "104.130.6.76",
+        "RABBITMQ_SERVER": "104.130.6.76",
+        "TEST_INTERVAL": "1"
+    },
     "uris": [
         "https://raw.githubusercontent.com/powellchristoph/mesos-test/master/deploy-producer.sh"
     ]

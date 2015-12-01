@@ -6,17 +6,18 @@ from time import sleep
 
 import pika
 
+r_server = os.getenv('RABBITMQ_SERVER', 'localhost')
+interval = os.getenv('TEST_INTERVAL', 2)
+logserver = os.getenv('SYSLOG_SERVER', 'localhost')
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-handler = logging.handlers.SysLogHandler(address=('localhost', 514))
+handler = logging.handlers.SysLogHandler(address=(logserver, 514))
 formatter = logging.Formatter('MESOS-PRODUCER %(levelname)s %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 logger.info('Producer is starting!')
-
-r_server = os.getenv('RABBITMQ_SERVER', 'localhost')
-interval = os.getenv('TEST_INTERVAL', 2)
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(host=r_server))
 channel = connection.channel()
