@@ -1,0 +1,10 @@
+{
+    "id": "producer-process", 
+    "cmd": "./deploy-producer.sh",
+    "cpus": 0.1,
+    "mem": 10.0,
+    "instances": 1,
+    "uris": [
+        "https://raw.githubusercontent.com/powellchristoph/mesos-test/master/deploy-producer.sh"
+    ]
+}
