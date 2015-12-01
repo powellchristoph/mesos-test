@@ -1,0 +1,31 @@
+{
+  "type": "DOCKER",
+  "volumes": [],
+  "docker": {
+    "image": "rabbitmq:3",
+    "network": "BRIDGE",
+    "portMappings": [
+      {
+        "containerPort": 5672,
+        "hostPort": 0,
+        "servicePort": 5672,
+        "protocol": "tcp"
+      },
+      {
+        "containerPort": 4369,
+        "hostPort": 0,
+        "servicePort": 10000,
+        "protocol": "tcp"
+      },
+      {
+        "containerPort": 25672,
+        "hostPort": 0,
+        "servicePort": 10001,
+        "protocol": "tcp"
+      }
+    ],
+    "privileged": false,
+    "parameters": [],
+    "forcePullImage": false
+  }
+}
