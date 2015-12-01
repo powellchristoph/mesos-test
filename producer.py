@@ -7,7 +7,7 @@ from time import sleep
 import pika
 
 r_server = os.getenv('RABBITMQ_SERVER', 'localhost')
-interval = os.getenv('TEST_INTERVAL', 2)
+interval = float(os.getenv('TEST_INTERVAL', 2))
 logserver = os.getenv('SYSLOG_SERVER', 'localhost')
 
 logger = logging.getLogger(__name__)
