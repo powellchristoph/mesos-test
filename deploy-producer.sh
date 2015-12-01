@@ -1,7 +1,11 @@
 #!/bin/bash
 
-virtualenv venv
+cleanup() {
+    rm -rf venv
+}
+trap cleanup EXIT
 
+virtualenv venv
 source venv/bin/activate
 pip install pika
 
