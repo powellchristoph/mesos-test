@@ -1,10 +1,5 @@
 #!/bin/bash
 
-cleanup() {
-    rm -rf venv
-}
-trap cleanup EXIT
-
 virtualenv venv
 ./venv/bin/python ./venv/bin/pip install pika
 
