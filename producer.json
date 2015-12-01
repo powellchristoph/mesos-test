@@ -1,6 +1,6 @@
 {
     "id": "producer-process", 
-    "cmd": "./deploy-producer.sh",
+    "cmd": "chmod 755 deploy-producer.sh && ./deploy-producer.sh",
     "cpus": 0.1,
     "mem": 10.0,
     "instances": 1,

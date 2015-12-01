@@ -1,6 +1,6 @@
 {
     "id": "consumer-process", 
-    "cmd": "./deploy-consumer.sh",
+    "cmd": "chmod 755 deploy-consumer.sh && ./deploy-consumer.sh",
     "cpus": 0.1,
     "mem": 10.0,
     "instances": 1,
