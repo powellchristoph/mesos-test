@@ -1,0 +1,63 @@
+{
+  "id": "demo",
+  "groups": [
+    {
+      "id": "queue",
+      "apps": [
+        {
+          "id": "rabbitmq-1",
+          "cpus": 1.0,
+          "mem": 512.0,
+          "instances": 1,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "rabbitmq:3",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "containerPort": 5672, "hostPort": 0, "servicePort": 5672, "protocol": "tcp" },
+                { "containerPort": 4369, "hostPort": 0, "protocol": "tcp" },
+                { "containerPort": 25672, "hostPort": 0, "protocol": "tcp" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "dependencies": ["/demo/queue"],
+      "apps": [
+        {
+            "id": "producer-process",
+            "cmd": "chmod 755 deploy-producer.sh && ./deploy-producer.sh && sleep 30 && ./venv/bin/python producer.py",
+            "cpus": 0.1,
+            "mem": 10.0,
+            "instances": 1,
+            "env": {
+                "SYSLOG_SERVER": "104.130.6.76",
+                "RABBITMQ_SERVER": "104.130.6.76",
+                "TEST_INTERVAL": "1"
+            },
+            "uris": [
+                "https://raw.githubusercontent.com/powellchristoph/mesos-test/master/deploy-producer.sh"
+            ]
+        },
+        {
+            "id": "consumer-process",
+            "cmd": "chmod 755 deploy-consumer.sh && ./deploy-consumer.sh && sleep 30 && ./venv/bin/python consumer.py",
+            "cpus": 0.1,
+            "mem": 10.0,
+            "instances": 1,
+            "env": {
+                "SYSLOG_SERVER": "104.130.6.76",
+                "RABBITMQ_SERVER": "104.130.6.76"
+            },
+            "uris": [
+                "https://raw.githubusercontent.com/powellchristoph/mesos-test/master/deploy-consumer.sh"
+            ]
+        }
+      ]
+    }
+  ]
+}
