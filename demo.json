@@ -33,7 +33,7 @@
             "cmd": "chmod 755 deploy-producer.sh && ./deploy-producer.sh && sleep 30 && ./venv/bin/python producer.py",
             "cpus": 0.1,
             "mem": 10.0,
-            "instances": 1,
+            "instances": 3,
             "env": {
                 "SYSLOG_SERVER": "104.130.6.76",
                 "RABBITMQ_SERVER": "104.130.6.76",
@@ -48,7 +48,7 @@
             "cmd": "chmod 755 deploy-consumer.sh && ./deploy-consumer.sh && sleep 30 && ./venv/bin/python consumer.py",
             "cpus": 0.1,
             "mem": 10.0,
-            "instances": 1,
+            "instances": 30,
             "env": {
                 "SYSLOG_SERVER": "104.130.6.76",
                 "RABBITMQ_SERVER": "104.130.6.76"
